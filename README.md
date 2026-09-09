@@ -1,32 +1,114 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+# React-useReducer-UserManagementApp
 
-Currently, two official plugins are available:
+Reactの`useReducer`と`useContext`を使用して、ユーザー管理機能を実装した練習用アプリです。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 概要
 
-## React Compiler
+ユーザー名と年齢を入力してユーザーを追加し、登録されたユーザーの確認・削除・全削除ができます。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+ユーザーの状態管理には`useReducer`、コンポーネント間の状態共有には`useContext`を使用しています。
 
-## Expanding the Oxlint configuration
+## Features
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+* ユーザーの追加
+* ユーザー名・年齢の入力
+* 入力値のバリデーション
+* ユーザー一覧の表示
+* ユーザーの削除
+* ユーザーの全削除
+* UUIDによるユーザーIDの生成
+* ユーザーが存在しない場合の表示切り替え
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Tech Stack
+
+* React
+* TypeScript
+* Vite
+* useState
+* useReducer
+* useContext
+* Tailwind CSS
+* uuid
+
+## Project Structure
+
+```text
+src/
+├── feature/
+│   └── problem4/
+│       ├── components/
+│       │   ├── AddUser.tsx
+│       │   └── UserList.tsx
+│       ├── contexts/
+│       │   └── UserManagementContext.tsx
+│       ├── reducers/
+│       │   └── UserManagementReducer.ts
+│       └── types/
+│           └── UserManagement.ts
+├── App.tsx
+└── main.tsx
+````
+
+## State Management
+
+`UserManagementContext`でユーザーの状態と`dispatch`を共有し、`UserManagementReducer`で状態変更を管理しています。
+
+```text
+Component
+    ↓
+dispatch
+    ↓
+UserManagementReducer
+    ↓
+State
+    ↓
+Component
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Actions
+
+ユーザー管理には以下の3つのアクションを使用しています。
+
+* `add`：ユーザーを追加
+* `remove`：指定したユーザーを削除
+* `clear`：すべてのユーザーを削除
+
+## Input Validation
+
+ユーザー名は`trim()`で前後の空白を除去し、未入力の場合はエラーにします。
+
+年齢は正規表現を使用して数字のみを許可し、`Number()`で`number`型へ変換しています。
+
+```tsx
+const trimmedName = name.trim();
+const trimmedAge = age.trim();
+
+if (!trimmedName) {
+  throw new Error("名前を入力してください");
+}
+
+if (!trimmedAge) {
+  throw new Error("年齢を入力してください");
+}
+
+if (!/^\d*$/.test(trimmedAge)) {
+  throw new Error("年齢は数字を入力してください");
+}
+
+const numericAge = Number(trimmedAge);
+```
+
+## Installation
+
+```bash
+npm install
+```
+
+## Development
+
+```bash
+npm run dev
+```
+
+ブラウザで表示されたURLにアクセスしてアプリを確認できます。
