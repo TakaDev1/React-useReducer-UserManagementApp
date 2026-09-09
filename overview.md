@@ -6,6 +6,6 @@
 ### **条件**
 
 (1) useReducer と useContext を使用すること
-(2) `'addUser'`, `'removeUser'`, `'clearAll'` のアクションを扱うこと
+(2) `'add'`, `'remove'`, `'clear'` のアクションを扱うこと
 (3) ユーザーは `{ id: string, name: string, age: number }` の構造にすること
 (4) TailwindCSSで整えること
