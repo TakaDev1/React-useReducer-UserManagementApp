@@ -6,7 +6,7 @@ import { UserManagementProvider } from "./feature/contexts/UserManagementContext
 function App() {
   return (
     <>
-      <div>
+      <div className="min-h-screen flex flex-col bg-gray-800 justify-center items-center">
         <h1>React-useReducer-UserManagementApp</h1>
         <UserManagementProvider>
           <div>

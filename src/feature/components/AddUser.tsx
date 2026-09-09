@@ -36,15 +36,21 @@ const AddUser = () => {
   };
 
   return (
-    <div>
+    <div className="text-white bg-gray-700 px-10 py-10 rounded-lg flex gap-5 items-center">
       <label htmlFor="name">
         名前:
-        <input id="name" type="text" value={name} onChange={handleName} />
+        <input id="name" type="text" value={name} onChange={handleName} className="border ml-5 " />
       </label>
       <label htmlFor="age">
-        年齢: <input id="age" type="text" value={age} onChange={handleAge} />
+        年齢:{" "}
+        <input id="age" type="text" value={age} onChange={handleAge} className="border ml-5" />
       </label>
-      <button onClick={handleAdd}>追加</button>
+      <button
+        onClick={handleAdd}
+        className="bg-blue-500 text-white font-semi-bold w-30 py-1 hover:opacity-80 cursor-pointer rounded-full"
+      >
+        追加
+      </button>
     </div>
   );
 };
