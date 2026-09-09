@@ -7,3 +7,5 @@ interface User {
 type State = User[];
 
 type Action = { type: "add"; user: User } | { type: "remove"; id: string } | { type: "clear" };
+
+export type { User, State, Action };
