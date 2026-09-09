@@ -13,22 +13,21 @@ const UserList = () => {
   };
 
   return (
-    <div>
+    <div className="text-white my-10">
       {state.length > 0 ? (
         <ul>
           {state.map((user) => (
-            <li key={user.id}>
+            <li key={user.id} className="w-1/2 mx-auto bg-blue-900 py-5 flex justify-around">
               <p>名前: {user.name}</p>
               <p>年齢: {user.age}</p>
               <button onClick={() => handleRemove(user.id)}>×</button>
             </li>
           ))}
+          <button onClick={handleClear}>クリア</button>
         </ul>
       ) : (
         <p>ユーザーが存在しません</p>
       )}
-
-      <button onClick={handleClear}>クリア</button>
     </div>
   );
 };
